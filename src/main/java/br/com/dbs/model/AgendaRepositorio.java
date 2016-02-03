@@ -10,10 +10,12 @@ public class AgendaRepositorio {
 	private List<Agenda> agendas = new ArrayList();
 	
 	public void adiciona(Agenda agenda) {
-		agenda.setId(nextId++);
+		
 		if (agendas.contains(agenda)) {
-			agendas.add(agendas.indexOf(agenda), agenda);
+			agendas.remove(agenda);
+			agendas.add(agenda);
 		} else {
+			agenda.setId(nextId++);
 			agendas.add(agenda);
 		}
 	}

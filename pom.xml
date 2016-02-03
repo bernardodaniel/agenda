@@ -4,4 +4,21 @@
   <artifactId>agenda</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>agenda</name>
+  
+  <dependencies>
+  	<!-- JPA: persist, remove, merge, etc -->
+  	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-entitymanager</artifactId>
+	    <version>4.3.1.Final</version>
+	</dependency>
+	
+	<!-- conectar com o banco postgresql -->
+	<dependency>
+		<groupId>postgresql</groupId>
+		<artifactId>postgresql</artifactId>
+		<version>9.1-901-1.jdbc4</version>
+	</dependency>
+  </dependencies>
+  
 </project>
