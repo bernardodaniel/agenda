@@ -28,6 +28,8 @@ public class AgendaController implements PropertyChangeListener {
 		model.addListener(this);
 		
 		registraAcoesDosBotoes();
+		
+		model.listar();
 	}
 
 	private void registraAcoesDosBotoes() {
@@ -47,7 +49,7 @@ public class AgendaController implements PropertyChangeListener {
 		view.getBotaoRemover().addActionListener(
 				new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						JOptionPane.showMessageDialog(null, "Botão remover clicado");
+						model.remover();
 					}
 				}
 				);
@@ -71,6 +73,10 @@ public class AgendaController implements PropertyChangeListener {
 			
 			view.setNome("");
 			view.setTelefone("");
+		}
+		
+		if (evt.getPropertyName().equals("listar")) {
+			tabelaModel.listar(model.getTodasAgendas());
 		}
 		
 	}

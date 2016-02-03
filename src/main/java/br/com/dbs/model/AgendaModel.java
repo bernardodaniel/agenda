@@ -52,5 +52,15 @@ public class AgendaModel {
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
 	}
+
+	public void remover() {
+		repositorio.remove(agenda);
+		novo();
+		notificador.firePropertyChange("agenda", null, agenda);
+	}
+	
+	public void listar() {
+		notificador.firePropertyChange("listar", null, null);
+	}
 	
 }

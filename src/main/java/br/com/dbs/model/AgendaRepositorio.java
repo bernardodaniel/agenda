@@ -1,30 +1,30 @@
 package br.com.dbs.model;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import br.com.dbs.util.JPAUtil;
 
 public class AgendaRepositorio {
-
-	private Long nextId = 1L;
-	private List<Agenda> agendas = new ArrayList();
+	
+	private EntityManager em = JPAUtil.createEntityManager();
 	
 	public void adiciona(Agenda agenda) {
-		
-		if (agendas.contains(agenda)) {
-			agendas.remove(agenda);
-			agendas.add(agenda);
-		} else {
-			agenda.setId(nextId++);
-			agendas.add(agenda);
-		}
+		em.getTransaction().begin();
+		em.persist(agenda);
+		em.getTransaction().commit();
 	}
 	
 	public void remove(Agenda agenda) {
-		agendas.remove(agenda);
+		em.getTransaction().begin();
+		em.remove(agenda);
+		em.getTransaction().commit();
 	}
 	
 	public Collection<Agenda> todas() {
-		return agendas;
+		Query q = em.createQuery("select a from Agenda a");
+		return q.getResultList();
 	}
 }
